@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -159,6 +159,29 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </style>
 </head>
 <body>
+
+<script>
+/* 
+=================================================
+   👉 GUSTAV! HER RETTER DU DINE DAGE:
+=================================================
+*/
+
+// 1. Skriv de hverdage (f.eks. i din ferie), som skal være LEDIGE:
+// Skriv dem som f.eks. ["20/7", "21/7", "22/7"]
+var ferieDage = ["20/7", "21/7", "22/7"]; 
+
+// 2. Skriv de weekender eller feriedage, som skal være LÅST/BOOKET:
+// Skriv dem som f.eks. ["18/7", "19/7"]
+var manueltSpærret = ["19/7"]; 
+
+/* 
+=================================================
+   Alt herunder passer sig selv!
+=================================================
+*/
+</script>
+
 <nav><h2>Gustavos Detailing</h2></nav>
 
 <div class="hero">
@@ -304,20 +327,6 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 
 <!-- JAVASCRIPT: Bygger automatisk kalenderen og styrer SMS -->
 <script>
-// ==========================================
-// STYR DINE FERIEDAGE OG BOOKEDE DAGE HERUNDER:
-// ==========================================
-
-// 1. Skriv de hverdage (f.eks. i din ferie), som skal være LEDIGE og åbne for booking:
-// Skriv dem som f.eks. ["20/7", "21/7", "22/7"]
-var ferieDage = ["20/7", "21/7", "22/7"]; 
-
-// 2. Skriv de weekender eller feriedage, som skal være LÅST (fordi de er booket, eller du skal noget andet):
-// Skriv dem som f.eks. ["18/7", "19/7"]
-var manueltSpærret = ["19/7"]; 
-
-// ==========================================
-
 var chosenDate = "";
 
 function generateCalendar() {
@@ -334,25 +343,20 @@ function generateCalendar() {
     var dayName = daysOfWeek[futureDate.getDay()];
     var shortDayName = shortDays[futureDate.getDay()];
     var dateNum = futureDate.getDate();
-    var monthNum = futureDate.getMonth() + 1; // Måneder starter fra 0
+    var monthNum = futureDate.getMonth() + 1;
     
     var fullDateStr = dayName + " d. " + dateNum + "/" + monthNum;
     var displayDate = shortDayName + " d. " + dateNum + "/" + monthNum;
-    var simpleFormat = dateNum + "/" + monthNum; // F.eks. "17/7"
+    var simpleFormat = dateNum + "/" + monthNum;
     
-    // Regler:
-    // - Er det weekend (Lør/Søn)? Så er den som udgangspunkt LEDIG.
-    // - Er det hverdag (Man-Fre)? Så er den som udgangspunkt OPTAGET, UNDTAGEN hvis den er tilføjet som feriedag.
     var isWeekend = (dayName === "Lørdag" || dayName === "Søndag");
     var isFerie = ferieDage.includes(simpleFormat);
     
     var shouldBeLocked = true;
     
     if (isWeekend) {
-      // Weekender er åbne, medmindre du manuelt spærrer dem
       shouldBeLocked = manueltSpærret.includes(simpleFormat);
     } else {
-      // Hverdage er låste, medmindre det er ferie OG du ikke manuelt har spærret dem bagefter
       if (isFerie) {
         shouldBeLocked = manueltSpærret.includes(simpleFormat);
       } else {
@@ -422,7 +426,6 @@ function sendBooking() {
   window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
 }
 
-// Start kalenderen, når siden indlæses
 window.onload = generateCalendar;
 </script>
 
