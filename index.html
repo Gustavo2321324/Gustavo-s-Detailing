@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gustavos Detailing</title>
 <style>
-body{font-family:Arial,sans-serif;margin:0;background:##0d6efd;color:#000}
+body{font-family:Arial,sans-serif;margin:0;background:#ffffff;color:#000}
 nav{background:#ffffff;padding:18px 30px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 nav h2{color:#000;margin:0}
 .hero{padding:100px 20px;text-align:center;background:#ffffff}
 h1,h2{color:#000}
-.btn{display:inline-block;background:#0d6efd;color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold}
+.btn{display:inline-block;background:#0d6efd;color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold;border:none;cursor:pointer}
 section{padding:50px 20px;max-width:900px;margin:auto}
 .card{border:1px solid #ddd;border-radius:10px;padding:20px;margin:15px 0}
 footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
@@ -83,6 +83,49 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   margin-top: 0;
   color: #444;
 }
+
+/* --- BOOKINGSYSTEM STYLING --- */
+.booking-form {
+  background: #fdfdfd;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 20px;
+}
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.form-group input, .form-group select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1em;
+}
+.form-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.form-checkbox input {
+  width: 18px;
+  height: 18px;
+}
+.booking-btn-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.btn-whatsapp {
+  background: #25D366; /* WhatsApp Grøn */
+}
 </style>
 </head>
 <body>
@@ -91,9 +134,10 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <div class="hero">
 <img src="image1.jpg" alt="Gustavos Detailing" class="hero-img">
 <p>Ren, frisk og som ny – i Odense.</p>
-<a class="btn" href="#kontakt">Kontakt</a>
+<a class="btn" href="#booking">Book tid nu</a>
 </div>
 
+<!-- Sektion 1: Før/Efter-billeder -->
 <section>
 <h2>Vores Resultater</h2>
 <p>Se den store forskel før og efter en grundig indvendig rengøring af førersiden.</p>
@@ -109,6 +153,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </div>
 </section>
 
+<!-- Sektion 2: Priser & Services -->
 <section>
 <h2>Priser & Services</h2>
 <div class="card">
@@ -136,11 +181,59 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <p>Kommer snart.</p>
 </div>
 
+<!-- Betalingsinfo -->
 <div class="payment-info">
   <p>💳 <strong>Betaling:</strong> Jeg modtager nem betaling via <strong>MobilePay</strong> eller <strong>kontanter</strong>, når arbejdet er færdigt.</p>
 </div>
 </section>
 
+<!-- NY SEKTION: Bookingsystem -->
+<section id="booking">
+  <h2>Book din bilpleje her</h2>
+  <p>Udfyld formularen nedenfor, og vælg om du vil sende booking-anmodningen direkte til mig via SMS eller WhatsApp.</p>
+  
+  <div class="booking-form">
+    <div class="form-group">
+      <label for="name">Dit Navn:</label>
+      <input type="text" id="name" placeholder="F.eks. Anders Jensen" required>
+    </div>
+
+    <div class="form-group">
+      <label for="car">Bilens mærke og model:</label>
+      <input type="text" id="car" placeholder="F.eks. VW Golf eller Tesla Model 3" required>
+    </div>
+
+    <div class="form-group">
+      <label for="date">Ønsket dato og tidspunkt:</label>
+      <input type="text" id="date" placeholder="F.eks. Lørdag d. 12. kl. 10:00" required>
+    </div>
+
+    <div style="margin-top: 15px; margin-bottom: 15px;">
+      <label style="font-weight: bold; display: block; margin-bottom: 8px;">Vælg services:</label>
+      <div class="form-group form-checkbox">
+        <input type="checkbox" id="service-main" checked disabled>
+        <label for="service-main">Indvendig rengøring (400 kr.)</label>
+      </div>
+      <div class="form-group form-checkbox">
+        <input type="checkbox" id="service-hair">
+        <label for="service-hair">Kæledyrshår fjerning (+100 kr.)</label>
+      </div>
+      <div class="form-group form-checkbox">
+        <input type="checkbox" id="service-stains">
+        <label for="service-stains">Pletfjerning fra sæder (+200 kr.)</label>
+      </div>
+    </div>
+
+    <p style="font-size: 0.9em; color: #666;">Efter du trykker på knappen, åbner din besked-app automatisk med den udfyldte besked.</p>
+
+    <div class="booking-btn-container">
+      <button onclick="sendBooking('sms')" class="btn">Send som SMS 📱</button>
+      <button onclick="sendBooking('whatsapp')" class="btn btn-whatsapp">Send på WhatsApp 💬</button>
+    </div>
+  </div>
+</section>
+
+<!-- Sektion 3: Praktisk information (FAQ) -->
 <section style="background: #fdfdfd; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
 <h2>Praktisk information</h2>
 
@@ -160,11 +253,13 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </div>
 </section>
 
+<!-- Sektion 4: Om mig -->
 <section>
 <h2>Om mig</h2>
 <p>Hej! Mit navn er Gustav, jeg er 14 år gammel og har rengjort biler indvendigt i ca. et år. Jeg går op i kvalitet og giver din bil et nyt liv. Rengøring kan foregå hos dig eller hos mig i 5230 Odense M.</p>
 </section>
 
+<!-- Sektion 5: Kontakt -->
 <section id="kontakt">
 <h2>Kontakt</h2>
 <p>📍 5230 Odense M</p>
@@ -173,5 +268,53 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </section>
 
 <footer>© 2026 Gustavos Detailing</footer>
+
+<!-- JAVASCRIPT: Dette script samler informationerne og sender beskeden -->
+<script>
+function sendBooking(type) {
+  var name = document.getElementById('name').value;
+  var car = document.getElementById('car').value;
+  var date = document.getElementById('date').value;
+  
+  if (!name || !car || !date) {
+    alert("Udfyld venligst dit navn, bil og ønsket tidspunkt først!");
+    return;
+  }
+
+  // Tjek hvilke services der er krydset af og regn prisen ud
+  var services = ["Indvendig rengøring (400 kr.)"];
+  var totalPris = 400;
+
+  if (document.getElementById('service-hair').checked) {
+    services.push("Fjernelse af kæledyrshår (+100 kr.)");
+    totalPris += 100;
+  }
+  if (document.getElementById('service-stains').checked) {
+    services.push("Pletfjerning fra sæder (+200 kr.)");
+    totalPris += 200;
+  }
+
+  // Skriv beskeden pænt op
+  var message = "Hej Gustav! Jeg vil gerne bestille en bilrengøring:\n\n" +
+                "Navn: " + name + "\n" +
+                "Bil: " + car + "\n" +
+                "Ønsket tid: " + date + "\n\n" +
+                "Valgte services:\n- " + services.join("\n- ") + "\n\n" +
+                "Samlet pris: " + totalPris + " kr.";
+
+  // Kod teksten så den virker i links
+  var encodedMessage = encodeURIComponent(message);
+  var phoneNumber = "4542163376";
+
+  if (type === 'sms') {
+    // Åbner SMS app
+    window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
+  } else if (type === 'whatsapp') {
+    // Åbner WhatsApp
+    window.location.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+  }
+}
+</script>
+
 </body>
 </html>
