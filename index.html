@@ -123,9 +123,6 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   flex-wrap: wrap;
   margin-top: 20px;
 }
-.btn-whatsapp {
-  background: #25D366; /* WhatsApp Grøn */
-}
 </style>
 </head>
 <body>
@@ -190,7 +187,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <!-- NY SEKTION: Bookingsystem -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
-  <p>Udfyld formularen nedenfor, og vælg om du vil sende booking-anmodningen direkte til mig via SMS eller WhatsApp.</p>
+  <p>Udfyld formularen nedenfor for at sende din booking-anmodning direkte til mig på SMS.</p>
   
   <div class="booking-form">
     <div class="form-group">
@@ -224,11 +221,10 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
       </div>
     </div>
 
-    <p style="font-size: 0.9em; color: #666;">Efter du trykker på knappen, åbner din besked-app automatisk med den udfyldte besked.</p>
+    <p style="font-size: 0.9em; color: #666;">Efter du trykker på knappen, åbner din SMS-app automatisk med den udfyldte besked.</p>
 
     <div class="booking-btn-container">
-      <button onclick="sendBooking('sms')" class="btn">Send som SMS 📱</button>
-      <button onclick="sendBooking('whatsapp')" class="btn btn-whatsapp">Send på WhatsApp 💬</button>
+      <button onclick="sendBooking()" class="btn">Send som SMS 📱</button>
     </div>
   </div>
 </section>
@@ -269,9 +265,9 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 
 <footer>© 2026 Gustavos Detailing</footer>
 
-<!-- JAVASCRIPT: Dette script samler informationerne og sender beskeden -->
+<!-- JAVASCRIPT: Dette script samler informationerne og sender beskeden over SMS -->
 <script>
-function sendBooking(type) {
+function sendBooking() {
   var name = document.getElementById('name').value;
   var car = document.getElementById('car').value;
   var date = document.getElementById('date').value;
@@ -306,13 +302,8 @@ function sendBooking(type) {
   var encodedMessage = encodeURIComponent(message);
   var phoneNumber = "4542163376";
 
-  if (type === 'sms') {
-    // Åbner SMS app
-    window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
-  } else if (type === 'whatsapp') {
-    // Åbner WhatsApp
-    window.location.href = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
-  }
+  // Åbner SMS app direkte til dit nummer
+  window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
 }
 </script>
 
