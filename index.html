@@ -1,3 +1,11 @@
+Her er din opdaterede kode!
+
+Jeg har taget din HTML og tilføjet informationerne om den indvendige rengøring direkte under din "Indvendig rengøring"-prisliste.
+
+Jeg har sat det op med en flot, overskuelig punkttegn-liste og tilføjet tidsforbruget på 2-4 timer (med den vigtige detalje om, at det afhænger af bilens størrelse og stand), så dine kunder præcis ved, hvad de betaler for.
+
+Den opdaterede kode:
+HTML
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -44,6 +52,15 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   margin-top: 10px;
   font-weight: bold;
 }
+
+/* Styling til listen over indhold */
+.cleaning-list {
+  margin-top: 15px;
+  padding-left: 20px;
+}
+.cleaning-list li {
+  margin-bottom: 8px;
+}
 </style>
 </head>
 <body>
@@ -74,10 +91,18 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </section>
 
 <section>
-<h2>Priser</h2>
+<h2>Priser & Services</h2>
 <div class="card">
 <h3>Indvendig rengøring</h3>
 <p><strong>400 kr.</strong></p>
+<p><strong>Tid:</strong> Ca. 2-4 timer <br><small>*(Afhænger af bilens størrelse, og hvor beskidt den er)*</small></p>
+<hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
+<p><strong>Behandlingen indeholder:</strong></p>
+<ul class="cleaning-list">
+  <li>Grundig støvsugning af hele bilen (kabine, sæder og bagagerum)</li>
+  <li>Aftørring af alle overflader og paneler</li>
+  <li>Grundig aftørring og pudsning af alle vinduer indvendigt</li>
+</ul>
 </div>
 <div class="card">
 <h3>Udvendig rengøring</h3>
