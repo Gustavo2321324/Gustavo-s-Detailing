@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="da">
 <head>
 <meta charset="UTF-8">
@@ -167,13 +167,9 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 =================================================
 */
 
-// 1. Skriv de hverdage (f.eks. i din ferie), som skal være LEDIGE:
-// Skriv dem som f.eks. ["20/7", "21/7", "22/7"]
-var ferieDage = ["20/7", "21/7", "22/7"]; 
+var fridage = []; 
 
-// 2. Skriv de weekender eller feriedage, som skal være LÅST/BOOKET:
-// Skriv dem som f.eks. ["18/7", "19/7"]
-var manueltSpærret = ["19/7"]; 
+var manueltSpærret = []; 
 
 /* 
 =================================================
@@ -243,7 +239,7 @@ var manueltSpærret = ["19/7"];
 <!-- SEKTION: Bookingsystem med automatisk kalender -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
-  <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte til mig på SMS.</p>
+  <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte to mig på SMS.</p>
   
   <div class="booking-form">
     
@@ -350,14 +346,14 @@ function generateCalendar() {
     var simpleFormat = dateNum + "/" + monthNum;
     
     var isWeekend = (dayName === "Lørdag" || dayName === "Søndag");
-    var isFerie = ferieDage.includes(simpleFormat);
+    var isFri = fridage.includes(simpleFormat);
     
     var shouldBeLocked = true;
     
     if (isWeekend) {
       shouldBeLocked = manueltSpærret.includes(simpleFormat);
     } else {
-      if (isFerie) {
+      if (isFri) {
         shouldBeLocked = manueltSpærret.includes(simpleFormat);
       } else {
         shouldBeLocked = true;
