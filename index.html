@@ -149,7 +149,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   border-color: #ffcccc;
   color: #999;
   cursor: not-allowed;
-  pointer-events: none; /* Gør at man ikke kan klikke på den */
+  pointer-events: none;
 }
 .calendar-day p {
   margin: 5px 0 0 0;
@@ -194,7 +194,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <p><strong>Behandlingen indeholder:</strong></p>
 <ul class="cleaning-list">
   <li>Grundig støvsugning af hele bilen (kabine, sæder og bagagerum)</li>
-  <li>Aftørring af alle overflader og paneler</li>
+  <li>Aftørring og klargøring af alle overflader og paneler</li>
   <li>Grundig aftørring og pudsning af alle vinduer indvendigt</li>
 </ul>
 
@@ -217,32 +217,18 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </div>
 </section>
 
-<!-- SEKTION: Bookingsystem med kalender-knapper -->
+<!-- SEKTION: Bookingsystem med automatisk kalender -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
   <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte til mig på SMS.</p>
   
   <div class="booking-form">
     
-    <!-- Den visuelle kalender -->
+    <!-- Den automatiske kalender -->
     <div class="form-group">
-      <label>Vælg en dag i denne uge:</label>
-      <div class="calendar-grid">
-        
-        <!-- HER ER DINE DAGE, SOM DU KAN RETTE PÅ TELEFONEN: 
-             Hvis den skal være LEDIG (grøn): 
-             <div class="calendar-day" onclick="selectDay(this, 'Fredag d. 17. juli')">Fre d. 17.<p style="color:#28a745;">LEDIG</p></div>
-             
-             Hvis den skal være OPTAGET (rød og låst): 
-             <div class="calendar-day booked">Fre d. 17.<p style="color:#dc3545;">OPTAGET</p></div>
-        -->
-        <div class="calendar-day" onclick="selectDay(this, 'Fredag d. 17. juli')">Fre d. 17.<p style="color:#28a745;">LEDIG</p></div>
-        <div class="calendar-day" onclick="selectDay(this, 'Lørdag d. 18. juli')">Lør d. 18.<p style="color:#28a745;">LEDIG</p></div>
-        <div class="calendar-day booked">Søn d. 19. juli<p style="color:#dc3545;">OPTAGET</p></div>
-        <div class="calendar-day" onclick="selectDay(this, 'Mandag d. 20. juli')">Man d. 20.<p style="color:#28a745;">LEDIG</p></div>
-        <div class="calendar-day booked">Tir d. 21. juli<p style="color:#dc3545;">OPTAGET</p></div>
-        <div class="calendar-day" onclick="selectDay(this, 'Onsdag d. 22. juli')">Ons d. 22.<p style="color:#28a745;">LEDIG</p></div>
-        
+      <label>Vælg en ledig dag:</label>
+      <div class="calendar-grid" id="auto-calendar">
+        <!-- Kalender-dagene genereres automatisk af scriptet herunder -->
       </div>
     </div>
 
@@ -316,18 +302,65 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 
 <footer>© 2026 Gustavos Detailing</footer>
 
-<!-- JAVASCRIPT: Styrer kalender-klik og SMS -->
+<!-- JAVASCRIPT: Bygger automatisk kalenderen og styrer SMS -->
 <script>
+// ==========================================
+// RET DINE LEDIGE OG LÅSTE DAGE HERUNDER:
+// ==========================================
+
+// 1. Dage i ugen du ALDRIG kan (f.eks. faste fritidsaktiviteter):
+var spærredeUgedage = ["Søndag", "Tirsdag"]; 
+
+// 2. Specifikke datoer hvor du ikke kan (skriv som f.eks. "17/7" eller "24/12"):
+var spærredeDatoer = ["17/7", "24/12"]; 
+
+// ==========================================
+
 var chosenDate = "";
 
+function generateCalendar() {
+  var calendarGrid = document.getElementById('auto-calendar');
+  var daysOfWeek = ["Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag"];
+  var shortDays = ["Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"];
+  
+  var today = new Date();
+  
+  for (var i = 0; i < 6; i++) {
+    var futureDate = new Date();
+    futureDate.setDate(today.getDate() + i);
+    
+    var dayName = daysOfWeek[futureDate.getDay()];
+    var shortDayName = shortDays[futureDate.getDay()];
+    var dateNum = futureDate.getDate();
+    var monthNum = futureDate.getMonth() + 1; // Måneder starter fra 0
+    
+    var fullDateStr = dayName + " d. " + dateNum + "/" + monthNum;
+    var displayDate = shortDayName + " d. " + dateNum + "/" + monthNum;
+    var simpleFormat = dateNum + "/" + monthNum; // F.eks. "15/7"
+    
+    // Tjekker om ugedagen ELLER den specifikke dato er spærret
+    var isBooked = spærredeUgedage.includes(dayName) || spærredeDatoer.includes(simpleFormat);
+    
+    var dayDiv = document.createElement('div');
+    if (isBooked) {
+      dayDiv.className = "calendar-day booked";
+      dayDiv.innerHTML = displayDate + '<p style="color:#dc3545;">OPTAGET</p>';
+    } else {
+      dayDiv.className = "calendar-day";
+      dayDiv.setAttribute('onclick', "selectDay(this, '" + fullDateStr + "')");
+      dayDiv.innerHTML = displayDate + '<p style="color:#28a745;">LEDIG</p>';
+    }
+    
+    calendarGrid.appendChild(dayDiv);
+  }
+}
+
 function selectDay(element, dateStr) {
-  // Fjern "selected" klassen fra alle andre dage
   var days = document.querySelectorAll('.calendar-day');
   days.forEach(function(day) {
     day.classList.remove('selected');
   });
   
-  // Marker den valgte dag
   element.classList.add('selected');
   chosenDate = dateStr;
 }
@@ -345,7 +378,6 @@ function sendBooking() {
     return;
   }
 
-  // Tjek hvilke services der er krydset af og regn prisen ud
   var services = ["Indvendig rengøring (400 kr.)"];
   var totalPris = 400;
 
@@ -358,7 +390,6 @@ function sendBooking() {
     totalPris += 200;
   }
 
-  // Skriv beskeden pænt op
   var message = "Hej Gustav! Jeg vil gerne bestille en bilrengøring:\n\n" +
                 "Navn: " + name + "\n" +
                 "Bil: " + car + "\n" +
@@ -369,9 +400,11 @@ function sendBooking() {
   var encodedMessage = encodeURIComponent(message);
   var phoneNumber = "4542163376";
 
-  // Åbner SMS-app
   window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
 }
+
+// Start kalenderen, når siden indlæses
+window.onload = generateCalendar;
 </script>
 
 </body>
