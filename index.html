@@ -305,14 +305,16 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <!-- JAVASCRIPT: Bygger automatisk kalenderen og styrer SMS -->
 <script>
 // ==========================================
-// RET DINE LEDIGE OG LÅSTE DAGE HERUNDER:
+// STYR DINE FERIEDAGE OG BOOKEDE DAGE HERUNDER:
 // ==========================================
 
-// 1. Dage i ugen du ALDRIG kan (f.eks. faste fritidsaktiviteter):
-var spærredeUgedage = ["Søndag", "Tirsdag"]; 
+// 1. Skriv de hverdage (f.eks. i din ferie), som skal være LEDIGE og åbne for booking:
+// Skriv dem som f.eks. ["20/7", "21/7", "22/7"]
+var ferieDage = ["20/7", "21/7", "22/7"]; 
 
-// 2. Specifikke datoer hvor du ikke kan (skriv som f.eks. "17/7" eller "24/12"):
-var spærredeDatoer = ["17/7", "24/12"]; 
+// 2. Skriv de weekender eller feriedage, som skal være LÅST (fordi de er booket, eller du skal noget andet):
+// Skriv dem som f.eks. ["18/7", "19/7"]
+var manueltSpærret = ["19/7"]; 
 
 // ==========================================
 
@@ -336,13 +338,30 @@ function generateCalendar() {
     
     var fullDateStr = dayName + " d. " + dateNum + "/" + monthNum;
     var displayDate = shortDayName + " d. " + dateNum + "/" + monthNum;
-    var simpleFormat = dateNum + "/" + monthNum; // F.eks. "15/7"
+    var simpleFormat = dateNum + "/" + monthNum; // F.eks. "17/7"
     
-    // Tjekker om ugedagen ELLER den specifikke dato er spærret
-    var isBooked = spærredeUgedage.includes(dayName) || spærredeDatoer.includes(simpleFormat);
+    // Regler:
+    // - Er det weekend (Lør/Søn)? Så er den som udgangspunkt LEDIG.
+    // - Er det hverdag (Man-Fre)? Så er den som udgangspunkt OPTAGET, UNDTAGEN hvis den er tilføjet som feriedag.
+    var isWeekend = (dayName === "Lørdag" || dayName === "Søndag");
+    var isFerie = ferieDage.includes(simpleFormat);
+    
+    var shouldBeLocked = true;
+    
+    if (isWeekend) {
+      // Weekender er åbne, medmindre du manuelt spærrer dem
+      shouldBeLocked = manueltSpærret.includes(simpleFormat);
+    } else {
+      // Hverdage er låste, medmindre det er ferie OG du ikke manuelt har spærret dem bagefter
+      if (isFerie) {
+        shouldBeLocked = manueltSpærret.includes(simpleFormat);
+      } else {
+        shouldBeLocked = true;
+      }
+    }
     
     var dayDiv = document.createElement('div');
-    if (isBooked) {
+    if (shouldBeLocked) {
       dayDiv.className = "calendar-day booked";
       dayDiv.innerHTML = displayDate + '<p style="color:#dc3545;">OPTAGET</p>';
     } else {
