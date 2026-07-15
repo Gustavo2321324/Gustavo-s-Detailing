@@ -54,6 +54,20 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   font-weight: bold;
 }
 
+/* Lodret video-styling */
+.video-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.vertical-video {
+  width: 100%;
+  max-width: 320px; /* Perfekt bredde til en lodret mobilvideo */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  outline: none;
+}
+
 /* Styling til listen over indhold og add-ons */
 .cleaning-list, .addons-list {
   margin-top: 15px;
@@ -108,6 +122,15 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
     <img src="IMG_4449.png" alt="Ren bilbund efter grundig detailing">
     <p>Efter: Helt ren og som ny</p>
   </div>
+</div>
+
+<!-- Her er den nye lodrette video, der kører automatisk -->
+<div class="video-container">
+  <video class="vertical-video" autoplay loop muted playsinline>
+    <source src="IMG_4452.mov" type="video/mp4">
+    <source src="IMG_4452.mov" type="video/quicktime">
+    Din browser understøtter ikke video-tagget.
+  </video>
 </div>
 </section>
 
