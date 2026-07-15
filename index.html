@@ -15,6 +15,15 @@ section{padding:50px 20px;max-width:900px;margin:auto}
 .card{border:1px solid #ddd;border-radius:10px;padding:20px;margin:15px 0}
 footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 
+/* Gør logobilledet fuldt responsivt og centreret */
+.hero-img {
+  width: 100%;
+  max-width: 600px; /* Sætter en max-størrelse, så det ikke bliver alt for voldsomt på computeren */
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto; /* Centrerer billedet og giver lidt luft i bunden */
+}
+
 /* Styling til resultat-billederne */
 .results-gallery {
   display: flex;
@@ -80,9 +89,8 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <nav><h2>Gustavos Detailing</h2></nav>
 
 <div class="hero">
-<img src="image1.jpg"
-     alt="Gustavos Detailing"
-     style="width:750px;max-width:200%;display:block;margin:auto;">
+<!-- Her har jeg givet dit billede klassen "hero-img" og fjernet den gamle inline styling -->
+<img src="image1.jpg" alt="Gustavos Detailing" class="hero-img">
 <p>Ren, frisk og som ny – i Odense.</p>
 <a class="btn" href="#kontakt">Kontakt</a>
 </div>
