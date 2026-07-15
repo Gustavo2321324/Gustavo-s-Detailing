@@ -239,7 +239,7 @@ var manueltSpærret = [];
 <!-- SEKTION: Bookingsystem med automatisk kalender -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
-  <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte to mig på SMS.</p>
+  <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte til mig på SMS.</p>
   
   <div class="booking-form">
     
@@ -336,8 +336,9 @@ function generateCalendar() {
     var futureDate = new Date();
     futureDate.setDate(today.getDate() + i);
     
-    var dayName = daysOfWeek[futureDate.getDay()];
-    var shortDayName = shortDays[futureDate.getDay()];
+    var dayOfWeekNum = futureDate.getDay(); // 0 = Søndag, 1 = Mandag, osv.
+    var dayName = daysOfWeek[dayOfWeekNum];
+    var shortDayName = shortDays[dayOfWeekNum];
     var dateNum = futureDate.getDate();
     var monthNum = futureDate.getMonth() + 1;
     
@@ -345,14 +346,17 @@ function generateCalendar() {
     var displayDate = shortDayName + " d. " + dateNum + "/" + monthNum;
     var simpleFormat = dateNum + "/" + monthNum;
     
-    var isWeekend = (dayName === "Lørdag" || dayName === "Søndag");
+    // Tjek om det er weekend (6 = lørdag, 0 = søndag)
+    var isWeekend = (dayOfWeekNum === 6 || dayOfWeekNum === 0);
     var isFri = fridage.includes(simpleFormat);
     
     var shouldBeLocked = true;
     
     if (isWeekend) {
+      // Weekender er åbne, medmindre de er lukket manuelt
       shouldBeLocked = manueltSpærret.includes(simpleFormat);
     } else {
+      // Hverdage er låst, medmindre det er en fridag (og den ikke er spærret manuelt)
       if (isFri) {
         shouldBeLocked = manueltSpærret.includes(simpleFormat);
       } else {
