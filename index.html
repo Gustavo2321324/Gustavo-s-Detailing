@@ -1,3 +1,16 @@
+Det kan vi helt sikkert godt lave!
+
+For at gøre det på en gratis GitHub-hjemmeside (uden at du skal betale for en dyr database), kan vi lave en super smart løsning:
+
+En rullemenu med faste tider: Kunden skal bare klikke og vælge en dag og et tidspunkt i stedet for selv at skrive det.
+
+"Udsolgt"-markering (Booket): Du kan selv lynhurtigt rette direkte i koden, når en dag bliver booket, så der står "MANDAG (BOOKET/OPTAGET)" i rullemenuen. Så kan kunderne se med det samme, hvornår du har tid.
+
+Her er den helt opdaterede kode til din index.html.
+
+Jeg har lavet en rullemenu i bookingsystemet, hvor jeg som eksempel har sat nogle dage ind og markeret en af dem som (Booket), så du kan se, hvordan det ser ud:
+
+HTML
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -106,6 +119,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1em;
+  background-color: #fff;
 }
 .form-checkbox {
   flex-direction: row;
@@ -184,7 +198,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </div>
 </section>
 
-<!-- NY SEKTION: Bookingsystem -->
+<!-- NY SEKTION: Bookingsystem med faste tider -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
   <p>Udfyld formularen nedenfor for at sende din booking-anmodning direkte til mig på SMS.</p>
@@ -200,9 +214,20 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
       <input type="text" id="car" placeholder="F.eks. VW Golf eller Tesla Model 3" required>
     </div>
 
+    <!-- Her vælger kunden en fast tid fra listen -->
     <div class="form-group">
-      <label for="date">Ønsket dato og tidspunkt:</label>
-      <input type="text" id="date" placeholder="F.eks. Lørdag d. 12. kl. 10:00" required>
+      <label for="date-select">Vælg ledig dag og tidspunkt:</label>
+      <select id="date-select" required>
+        <option value="" disabled selected>-- Vælg en ledig tid her --</option>
+        
+        <!-- Du kan nemt ændre tiderne eller tilføje/fjerne "(BOOKET)" nedenfor -->
+        <option value="Fredag kl. 15:00">Fredag kl. 15:00 (LEDIG)</option>
+        <option value="Lørdag kl. 10:00">Lørdag kl. 10:00 (LEDIG)</option>
+        <option value="Lørdag kl. 14:00" disabled>Lørdag kl. 14:00 (🚫 BOOKET)</option>
+        <option value="Søndag kl. 11:00">Søndag kl. 11:00 (LEDIG)</option>
+        <option value="Søndag kl. 15:00">Søndag kl. 15:00 (LEDIG)</option>
+        
+      </select>
     </div>
 
     <div style="margin-top: 15px; margin-bottom: 15px;">
@@ -270,10 +295,11 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 function sendBooking() {
   var name = document.getElementById('name').value;
   var car = document.getElementById('car').value;
-  var date = document.getElementById('date').value;
+  var dateSelect = document.getElementById('date-select');
+  var date = dateSelect.options[dateSelect.selectedIndex].value;
   
   if (!name || !car || !date) {
-    alert("Udfyld venligst dit navn, bil og ønsket tidspunkt først!");
+    alert("Udfyld venligst dit navn, din bil og vælg en ledig tid først!");
     return;
   }
 
