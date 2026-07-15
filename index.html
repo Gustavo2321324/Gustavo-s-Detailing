@@ -1,14 +1,20 @@
+Jeg forstår! Du vil have logoet tilbage i toppen, og du vil have de rigtige "før og efter" billeder sat ind.
+
+Jeg har rettet koden herunder. Jeg har indsat en pladsholder for dit logo øverst. Du skal kun lige rette DIT_LOGO_NAVN.png til det rigtige navn på din logo-fil, så spiller det hele!
+
+HTML
 <!DOCTYPE html>
 <html lang="da">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image1.jpg/x-icon" href="favicon.ico">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 <title>Gustavos Detailing</title>
 <style>
 body{font-family:Arial,sans-serif;margin:0;background:#ffffff;color:#000}
-nav{background:#ffffff;padding:18px 30px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
+nav{background:#ffffff;padding:15px 30px;box-shadow:0 2px 8px rgba(0,0,0,.1); display: flex; align-items: center; gap: 15px;}
 nav h2{color:#000;margin:0}
+nav img { height: 50px; }
 .hero{padding:100px 20px;text-align:center;background:#ffffff}
 h1,h2{color:#000}
 .btn{display:inline-block;background:#0d6efd;color:#fff;padding:15px 30px;border-radius:30px;text-decoration:none;font-weight:bold;border:none;cursor:pointer;font-size: 1.1em;}
@@ -25,10 +31,13 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </head>
 <body>
 
-<nav><h2>Gustavos Detailing</h2></nav>
+<nav>
+    <img src="DIT_LOGO_NAVN.png" alt="Logo">
+    <h2>Gustavos Detailing</h2>
+</nav>
 
 <div class="hero">
-<img src="IMG_4456.jpg" alt="Gustavos Detailing" class="hero-img">
+<img src="IMG_4456.png" alt="Gustavos Detailing" class="hero-img">
 <p>Ren, frisk og som ny – i Odense.</p>
 <a class="btn" href="https://gustavos-detailing.planway.com">Book tid her</a>
 </div>
