@@ -1,16 +1,3 @@
-Det kan vi helt sikkert godt lave!
-
-For at gøre det på en gratis GitHub-hjemmeside (uden at du skal betale for en dyr database), kan vi lave en super smart løsning:
-
-En rullemenu med faste tider: Kunden skal bare klikke og vælge en dag og et tidspunkt i stedet for selv at skrive det.
-
-"Udsolgt"-markering (Booket): Du kan selv lynhurtigt rette direkte i koden, når en dag bliver booket, så der står "MANDAG (BOOKET/OPTAGET)" i rullemenuen. Så kan kunderne se med det samme, hvornår du har tid.
-
-Her er den helt opdaterede kode til din index.html.
-
-Jeg har lavet en rullemenu i bookingsystemet, hvor jeg som eksempel har sat nogle dage ind og markeret en af dem som (Booket), så du kan se, hvordan det ser ud:
-
-HTML
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -31,10 +18,10 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 /* Gør logobilledet fuldt responsivt og centreret */
 .hero-img {
   width: 100%;
-  max-width: 600px; /* Sætter en max-størrelse, så det ikke bliver alt for voldsomt på computeren */
+  max-width: 600px;
   height: auto;
   display: block;
-  margin: 0 auto 20px auto; /* Centrerer billedet og giver lidt luft i bunden */
+  margin: 0 auto 20px auto;
 }
 
 /* Styling til resultat-billederne */
@@ -59,7 +46,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   width: 100%;
   height: auto;
   border-radius: 6px;
-  aspect-ratio: 3/4; /* Holder billederne i samme højde og format */
+  aspect-ratio: 3/4;
   object-fit: cover;
 }
 .result-card p {
@@ -76,7 +63,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   margin-bottom: 8px;
 }
 .addons-list li {
-  list-style-type: "➕ "; /* Gør det tydeligt, at det er ekstra tilvalg */
+  list-style-type: "➕ ";
 }
 
 /* Styling til betalingsinfo og FAQ */
@@ -131,11 +118,43 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   width: 18px;
   height: 18px;
 }
-.booking-btn-container {
-  display: flex;
+
+/* Kalender ugedage-vælger */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.calendar-day {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  background: #fdfdfd;
+  transition: all 0.2s ease;
+}
+.calendar-day:hover {
+  border-color: #0d6efd;
+  background: #f0f7ff;
+}
+.calendar-day.selected {
+  border-color: #0d6efd;
+  background: #0d6efd;
+  color: #fff;
+}
+.calendar-day.booked {
+  background: #ffebeb;
+  border-color: #ffcccc;
+  color: #999;
+  cursor: not-allowed;
+  pointer-events: none; /* Gør at man ikke kan klikke på den */
+}
+.calendar-day p {
+  margin: 5px 0 0 0;
+  font-size: 0.8em;
+  font-weight: bold;
 }
 </style>
 </head>
@@ -198,12 +217,35 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 </div>
 </section>
 
-<!-- NY SEKTION: Bookingsystem med faste tider -->
+<!-- SEKTION: Bookingsystem med kalender-knapper -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
-  <p>Udfyld formularen nedenfor for at sende din booking-anmodning direkte til mig på SMS.</p>
+  <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte til mig på SMS.</p>
   
   <div class="booking-form">
+    
+    <!-- Den visuelle kalender -->
+    <div class="form-group">
+      <label>Vælg en dag i denne uge:</label>
+      <div class="calendar-grid">
+        
+        <!-- HER ER DAGE OG TIDER. RET DETTE DIREKTE PÅ DIN TELEFON: 
+             Hvis den skal være LEDIG (grøn): 
+             <div class="calendar-day" onclick="selectDay(this, 'Fredag d. 17.')">Fre d. 17.<p style="color:#28a745;">LEDIG</p></div>
+             
+             Hvis den skal være OPTAGET (rød og låst): 
+             <div class="calendar-day booked">Fre d. 17.<p style="color:#dc3545;">OPTAGET</p></div>
+        -->
+        <div class="calendar-day" onclick="selectDay(this, 'Fredag d. 17.')">Fre d. 17.<p style="color:#28a745;">LEDIG</p></div>
+        <div class="calendar-day" onclick="selectDay(this, 'Lørdag d. 18.')">Lør d. 18.<p style="color:#28a745;">LEDIG</p></div>
+        <div class="calendar-day booked">Søn d. 19.<p style="color:#dc3545;">OPTAGET</p></div>
+        <div class="calendar-day" onclick="selectDay(this, 'Mandag d. 20.')">Man d. 20.<p style="color:#28a745;">LEDIG</p></div>
+        <div class="calendar-day booked">Tir d. 21.<p style="color:#dc3545;">OPTAGET</p></div>
+        <div class="calendar-day" onclick="selectDay(this, 'Onsdag d. 22.')">Ons d. 22.<p style="color:#28a745;">LEDIG</p></div>
+        
+      </div>
+    </div>
+
     <div class="form-group">
       <label for="name">Dit Navn:</label>
       <input type="text" id="name" placeholder="F.eks. Anders Jensen" required>
@@ -212,22 +254,6 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
     <div class="form-group">
       <label for="car">Bilens mærke og model:</label>
       <input type="text" id="car" placeholder="F.eks. VW Golf eller Tesla Model 3" required>
-    </div>
-
-    <!-- Her vælger kunden en fast tid fra listen -->
-    <div class="form-group">
-      <label for="date-select">Vælg ledig dag og tidspunkt:</label>
-      <select id="date-select" required>
-        <option value="" disabled selected>-- Vælg en ledig tid her --</option>
-        
-        <!-- Du kan nemt ændre tiderne eller tilføje/fjerne "(BOOKET)" nedenfor -->
-        <option value="Fredag kl. 15:00">Fredag kl. 15:00 (LEDIG)</option>
-        <option value="Lørdag kl. 10:00">Lørdag kl. 10:00 (LEDIG)</option>
-        <option value="Lørdag kl. 14:00" disabled>Lørdag kl. 14:00 (🚫 BOOKET)</option>
-        <option value="Søndag kl. 11:00">Søndag kl. 11:00 (LEDIG)</option>
-        <option value="Søndag kl. 15:00">Søndag kl. 15:00 (LEDIG)</option>
-        
-      </select>
     </div>
 
     <div style="margin-top: 15px; margin-bottom: 15px;">
@@ -242,11 +268,11 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
       </div>
       <div class="form-group form-checkbox">
         <input type="checkbox" id="service-stains">
-        <label for="service-stains">Pletfjerning fra sæder (+100 kr.)</label>
+        <label for="service-stains">Pletfjerning fra sæder (+200 kr.)</label>
       </div>
     </div>
 
-    <p style="font-size: 0.9em; color: #666;">Efter du trykker på knappen, åbner din SMS-app automatisk med den udfyldte besked.</p>
+    <p style="font-size: 0.9em; color: #666;">Efter du trykker på knappen, åbner din SMS-app automatisk med din booking.</p>
 
     <div class="booking-btn-container">
       <button onclick="sendBooking()" class="btn">Send som SMS 📱</button>
@@ -290,16 +316,32 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 
 <footer>© 2026 Gustavos Detailing</footer>
 
-<!-- JAVASCRIPT: Dette script samler informationerne og sender beskeden over SMS -->
+<!-- JAVASCRIPT: Styrer kalender-klik og SMS -->
 <script>
+var chosenDate = "";
+
+function selectDay(element, dateStr) {
+  // Fjern "selected" klassen fra alle andre dage
+  var days = document.querySelectorAll('.calendar-day');
+  days.forEach(function(day) {
+    day.classList.remove('selected');
+  });
+  
+  // Marker den valgte dag
+  element.classList.add('selected');
+  chosenDate = dateStr;
+}
+
 function sendBooking() {
   var name = document.getElementById('name').value;
   var car = document.getElementById('car').value;
-  var dateSelect = document.getElementById('date-select');
-  var date = dateSelect.options[dateSelect.selectedIndex].value;
   
-  if (!name || !car || !date) {
-    alert("Udfyld venligst dit navn, din bil og vælg en ledig tid først!");
+  if (!chosenDate) {
+    alert("Vælg venligst en dag i kalenderen først!");
+    return;
+  }
+  if (!name || !car) {
+    alert("Udfyld venligst dit navn og din bil!");
     return;
   }
 
@@ -320,15 +362,14 @@ function sendBooking() {
   var message = "Hej Gustav! Jeg vil gerne bestille en bilrengøring:\n\n" +
                 "Navn: " + name + "\n" +
                 "Bil: " + car + "\n" +
-                "Ønsket tid: " + date + "\n\n" +
+                "Ønsket dag: " + chosenDate + "\n\n" +
                 "Valgte services:\n- " + services.join("\n- ") + "\n\n" +
                 "Samlet pris: " + totalPris + " kr.";
 
-  // Kod teksten så den virker i links
   var encodedMessage = encodeURIComponent(message);
   var phoneNumber = "4542163376";
 
-  // Åbner SMS app direkte til dit nummer
+  // Åbner SMS-app
   window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
 }
 </script>
