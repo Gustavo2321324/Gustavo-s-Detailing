@@ -1,3 +1,14 @@
+Det er nogle rigtig gode og vigtige informationer, du har der! At minde kunderne om at tømme bilen, og forklare, hvordan det fungerer med MobilePay/kontanter samt afhentning/levering, vil spare dig for en masse forklaring over telefonen.
+
+Jeg har opdateret din kode og tilføjet to super professionelle sektioner:
+
+Betaling: Under priserne står der nu, at du tager MobilePay og kontanter.
+
+Praktisk info (FAQ): En helt ny sektion lige over "Om mig", som svarer på de spørgsmål, du nævnte (hvor det foregår, og hvad kunden skal gøre inden).
+
+Her er den komplette, opdaterede kode, du kan kopiere direkte ind på din GitHub-side:
+
+HTML
 <!DOCTYPE html>
 <html lang="da">
 <head>
@@ -56,6 +67,24 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 .addons-list li {
   list-style-type: "➕ "; /* Gør det tydeligt, at det er ekstra tilvalg */
 }
+
+/* Styling til betalingsinfo og FAQ */
+.payment-info {
+  margin-top: 15px;
+  font-size: 0.95em;
+  color: #333;
+}
+.faq-item {
+  margin-bottom: 20px;
+}
+.faq-item h3 {
+  margin-bottom: 5px;
+  font-size: 1.15em;
+}
+.faq-item p {
+  margin-top: 0;
+  color: #444;
+}
 </style>
 </head>
 <body>
@@ -110,6 +139,31 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <div class="card">
 <h3>Udvendig rengøring</h3>
 <p>Kommer snart.</p>
+</div>
+
+<!-- Betalingsinfo -->
+<div class="payment-info">
+  <p>💳 <strong>Betaling:</strong> Jeg modtager nem betaling via <strong>MobilePay</strong> eller <strong>kontanter</strong>, når arbejdet er færdigt.</p>
+</div>
+</section>
+
+<!-- Ny FAQ Sektion -->
+<section style="background: #fdfdfd; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
+<h2>Praktisk information</h2>
+
+<div class="faq-item">
+  <h3>Hvornår er min bil færdig?</h3>
+  <p>Jeg skriver en besked til dig, så snart jeg er helt færdig med rengøringen, så du kan hente den med det samme.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hvor foregår rengøringen?</h3>
+  <p>Du må meget gerne komme over til mig med bilen. Hvis det overhovedet ikke er en mulighed for dig, kan jeg i nogle tilfælde også godt finde ud af at komme ud til dig.</p>
+</div>
+
+<div class="faq-item">
+  <h3>Hvad skal jeg gøre inden aflevering?</h3>
+  <p>Tøm venligst bilen for personlige ejendele og ting, som du ikke vil have støvsuget op eller smidt ud, inden du afleverer den til mig.</p>
 </div>
 </section>
 
