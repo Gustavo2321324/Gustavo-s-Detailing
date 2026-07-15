@@ -15,147 +15,32 @@ section{padding:50px 20px;max-width:900px;margin:auto}
 .card{border:1px solid #ddd;border-radius:10px;padding:20px;margin:15px 0}
 footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 
-/* Gør logobilledet fuldt responsivt og centreret */
-.hero-img {
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px auto;
-}
+.hero-img { width: 100%; max-width: 600px; height: auto; display: block; margin: 0 auto 20px auto; }
+.results-gallery { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+.result-card { border: 1px solid #ddd; border-radius: 10px; padding: 15px; background: #fdfdfd; max-width: 45%; min-width: 280px; box-sizing: border-box; text-align: center; }
+.result-card img { width: 100%; height: auto; border-radius: 6px; aspect-ratio: 3/4; object-fit: cover; }
+.result-card p { margin-top: 10px; font-weight: bold; }
+.cleaning-list, .addons-list { margin-top: 15px; padding-left: 20px; }
+.cleaning-list li, .addons-list li { margin-bottom: 8px; }
+.addons-list li { list-style-type: "➕ "; }
+.payment-info { margin-top: 15px; font-size: 0.95em; color: #333; }
+.faq-item { margin-bottom: 20px; }
+.faq-item h3 { margin-bottom: 5px; font-size: 1.15em; }
+.faq-item p { margin-top: 0; color: #444; }
 
-/* Styling til resultat-billederne */
-.results-gallery {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-top: 20px;
-}
-.result-card {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 15px;
-  background: #fdfdfd;
-  max-width: 45%;
-  min-width: 280px;
-  box-sizing: border-box;
-  text-align: center;
-}
-.result-card img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-}
-.result-card p {
-  margin-top: 10px;
-  font-weight: bold;
-}
+.booking-form { background: #fdfdfd; border: 1px solid #ddd; border-radius: 12px; padding: 25px; margin-top: 20px; }
+.form-group { margin-bottom: 15px; display: flex; flex-direction: column; }
+.form-group label { font-weight: bold; margin-bottom: 5px; }
+.form-group input, .form-group select { padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 1em; background-color: #fff; }
+.form-checkbox { flex-direction: row; align-items: center; gap: 10px; margin-bottom: 10px; }
+.form-checkbox input { width: 18px; height: 18px; }
 
-/* Styling til listen over indhold og add-ons */
-.cleaning-list, .addons-list {
-  margin-top: 15px;
-  padding-left: 20px;
-}
-.cleaning-list li, .addons-list li {
-  margin-bottom: 8px;
-}
-.addons-list li {
-  list-style-type: "➕ ";
-}
-
-/* Styling til betalingsinfo og FAQ */
-.payment-info {
-  margin-top: 15px;
-  font-size: 0.95em;
-  color: #333;
-}
-.faq-item {
-  margin-bottom: 20px;
-}
-.faq-item h3 {
-  margin-bottom: 5px;
-  font-size: 1.15em;
-}
-.faq-item p {
-  margin-top: 0;
-  color: #444;
-}
-
-/* --- BOOKINGSYSTEM STYLING --- */
-.booking-form {
-  background: #fdfdfd;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 25px;
-  margin-top: 20px;
-}
-.form-group {
-  margin-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-}
-.form-group label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-.form-group input, .form-group select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 1em;
-  background-color: #fff;
-}
-.form-checkbox {
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-.form-checkbox input {
-  width: 18px;
-  height: 18px;
-}
-
-/* Kalender ugedage-vælger */
-.calendar-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 10px;
-  margin-bottom: 20px;
-}
-.calendar-day {
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  cursor: pointer;
-  background: #fdfdfd;
-  transition: all 0.2s ease;
-}
-.calendar-day:hover {
-  border-color: #0d6efd;
-  background: #f0f7ff;
-}
-.calendar-day.selected {
-  border-color: #0d6efd;
-  background: #0d6efd;
-  color: #fff;
-}
-.calendar-day.booked {
-  background: #ffebeb;
-  border-color: #ffcccc;
-  color: #999;
-  cursor: not-allowed;
-  pointer-events: none;
-}
-.calendar-day p {
-  margin: 5px 0 0 0;
-  font-size: 0.8em;
-  font-weight: bold;
-}
+.calendar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.calendar-day { border: 1px solid #ccc; border-radius: 8px; padding: 10px; text-align: center; cursor: pointer; background: #fdfdfd; transition: all 0.2s ease; }
+.calendar-day:hover { border-color: #0d6efd; background: #f0f7ff; }
+.calendar-day.selected { border-color: #0d6efd; background: #0d6efd; color: #fff; }
+.calendar-day.booked { background: #ffebeb; border-color: #ffcccc; color: #999; cursor: not-allowed; pointer-events: none; }
+.calendar-day p { margin: 5px 0 0 0; font-size: 0.8em; font-weight: bold; }
 </style>
 </head>
 <body>
@@ -163,17 +48,13 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <script>
 /* 
 =================================================
-   👉 GUSTAV! HER RETTER DU DINE DAGE:
+   👉 GUSTAV! HER SPÆRRER DU DAGE (hvis du er optaget):
 =================================================
 */
-
-var fridage = []; 
 
 var manueltSpærret = []; 
 
 /* 
-=================================================
-   Alt herunder passer sig selv!
 =================================================
 */
 </script>
@@ -186,142 +67,53 @@ var manueltSpærret = [];
 <a class="btn" href="#booking">Book tid nu</a>
 </div>
 
-<!-- Sektion 1: Før/Efter-billeder -->
 <section>
 <h2>Vores Resultater</h2>
-<p>Se den store forskel før og efter en grundig indvendig rengøring af førersiden.</p>
 <div class="results-gallery">
-  <div class="result-card">
-    <img src="IMG_4448.png" alt="Beskidt bilbund før rengøring">
-    <p>Før: Beskidt og støvet bund</p>
-  </div>
-  <div class="result-card">
-    <img src="IMG_4449.png" alt="Ren bilbund efter grundig detailing">
-    <p>Efter: Helt ren og som ny</p>
-  </div>
+  <div class="result-card"><img src="IMG_4448.png" alt="Før"><p>Før: Beskidt bund</p></div>
+  <div class="result-card"><img src="IMG_4449.png" alt="Efter"><p>Efter: Som ny</p></div>
 </div>
 </section>
 
-<!-- Sektion 2: Priser & Services -->
 <section>
 <h2>Priser & Services</h2>
 <div class="card">
 <h3>Indvendig rengøring</h3>
 <p><strong>400 kr.</strong></p>
-<p><strong>Tid:</strong> Ca. 2-4 timer <br><small>*(Afhænger af bilens størrelse, og hvor beskidt den er)*</small></p>
-<hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-<p><strong>Behandlingen indeholder:</strong></p>
 <ul class="cleaning-list">
-  <li>Grundig støvsugning af hele bilen (kabine, sæder og bagagerum)</li>
-  <li>Aftørring og klargøring af alle overflader og paneler</li>
-  <li>Grundig aftørring og pudsning af alle vinduer indvendigt</li>
+  <li>Grundig støvsugning</li>
+  <li>Aftørring af alle overflader</li>
+  <li>Pudsning af vinduer</li>
 </ul>
-
-<hr style="border: 0; border-top: 1px solid #eee; margin: 15px 0;">
-<p><strong>Ekstra tilvalg (Add-ons):</strong></p>
+<p><strong>Add-ons:</strong></p>
 <ul class="addons-list">
-  <li>Fjernelse af kæledyrshår: <strong>+100 kr.</strong></li>
-  <li>Pletfjerning fra sæder: <strong>+200 kr.</strong></li>
+  <li>Kæledyrshår: <strong>+100 kr.</strong></li>
+  <li>Pletfjerning: <strong>+200 kr.</strong></li>
 </ul>
-</div>
-
-<div class="card">
-<h3>Udvendig rengøring</h3>
-<p>Kommer snart.</p>
-</div>
-
-<!-- Betalingsinfo -->
-<div class="payment-info">
-  <p>💳 <strong>Betaling:</strong> Jeg modtager nem betaling via <strong>MobilePay</strong> eller <strong>kontanter</strong>, når arbejdet er færdigt.</p>
 </div>
 </section>
 
-<!-- SEKTION: Bookingsystem med automatisk kalender -->
 <section id="booking">
   <h2>Book din bilpleje her</h2>
-  <p>Klik på en ledig dag i kalenderen, udfyld dine oplysninger, og send din booking direkte til mig på SMS.</p>
-  
   <div class="booking-form">
-    
-    <!-- Den automatiske kalender -->
     <div class="form-group">
       <label>Vælg en ledig dag:</label>
-      <div class="calendar-grid" id="auto-calendar">
-        <!-- Kalender-dagene genereres automatisk af scriptet herunder -->
-      </div>
+      <div class="calendar-grid" id="auto-calendar"></div>
     </div>
-
-    <div class="form-group">
-      <label for="name">Dit Navn:</label>
-      <input type="text" id="name" placeholder="F.eks. Anders Jensen" required>
-    </div>
-
-    <div class="form-group">
-      <label for="car">Bilens mærke og model:</label>
-      <input type="text" id="car" placeholder="F.eks. VW Golf eller Tesla Model 3" required>
-    </div>
-
-    <div style="margin-top: 15px; margin-bottom: 15px;">
-      <label style="font-weight: bold; display: block; margin-bottom: 8px;">Vælg services:</label>
-      <div class="form-group form-checkbox">
-        <input type="checkbox" id="service-main" checked disabled>
-        <label for="service-main">Indvendig rengøring (400 kr.)</label>
-      </div>
-      <div class="form-group form-checkbox">
-        <input type="checkbox" id="service-hair">
-        <label for="service-hair">Kæledyrshår fjerning (+100 kr.)</label>
-      </div>
-      <div class="form-group form-checkbox">
-        <input type="checkbox" id="service-stains">
-        <label for="service-stains">Pletfjerning fra sæder (+200 kr.)</label>
-      </div>
-    </div>
-
-    <p style="font-size: 0.9em; color: #666;">Efter du trykker på knappen, åbner din SMS-app automatisk med din booking.</p>
-
-    <div class="booking-btn-container">
-      <button onclick="sendBooking()" class="btn">Send som SMS 📱</button>
-    </div>
+    <div class="form-group"><label for="name">Dit Navn:</label><input type="text" id="name" required></div>
+    <div class="form-group"><label for="car">Bilens mærke og model:</label><input type="text" id="car" required></div>
+    <button onclick="sendBooking()" class="btn">Send som SMS 📱</button>
   </div>
 </section>
 
-<!-- Sektion 3: Praktisk information (FAQ) -->
-<section style="background: #fdfdfd; border-top: 1px solid #eee; border-bottom: 1px solid #eee;">
-<h2>Praktisk information</h2>
-
-<div class="faq-item">
-  <h3>Hvornår er min bil færdig?</h3>
-  <p>Jeg skriver en besked til dig, så snart jeg er helt færdig med rengøringen, så du kan hente den med det samme.</p>
-</div>
-
-<div class="faq-item">
-  <h3>Hvor foregår rengøringen?</h3>
-  <p>Du må meget gerne komme over til mig med bilen. Hvis det overhovedet ikke er en mulighed for dig, kan jeg i nogle tilfælde også godt finde ud af at komme ud til dig.</p>
-</div>
-
-<div class="faq-item">
-  <h3>Hvad skal jeg gøre inden aflevering?</h3>
-  <p>Tøm venligst bilen for personlige ejendele og ting, som du ikke vil have støvsuget op eller smidt ud, inden du afleverer den til mig.</p>
-</div>
-</section>
-
-<!-- Sektion 4: Om mig -->
 <section>
-<h2>Om mig</h2>
-<p>Hej! Mit navn er Gustav, jeg er 14 år gammel og har rengjort biler indvendigt i ca. et år. Jeg går op i kvalitet og giver din bil et nyt liv. Rengøring kan foregå hos dig eller hos mig i 5230 Odense M.</p>
-</section>
-
-<!-- Sektion 5: Kontakt -->
-<section id="kontakt">
 <h2>Kontakt</h2>
-<p>📍 5230 Odense M</p>
-<p>📞 Telefon: 42 16 33 76</p>
+<p>📍 5230 Odense M | 📞 42 16 33 76</p>
 <a class="btn" href="tel:+4542163376">Ring nu</a>
 </section>
 
 <footer>© 2026 Gustavos Detailing</footer>
 
-<!-- JAVASCRIPT: Bygger automatisk kalenderen og styrer SMS -->
 <script>
 var chosenDate = "";
 
@@ -336,9 +128,8 @@ function generateCalendar() {
     var futureDate = new Date();
     futureDate.setDate(today.getDate() + i);
     
-    var dayOfWeekNum = futureDate.getDay(); // 0 = Søndag, 1 = Mandag, osv.
-    var dayName = daysOfWeek[dayOfWeekNum];
-    var shortDayName = shortDays[dayOfWeekNum];
+    var dayName = daysOfWeek[futureDate.getDay()];
+    var shortDayName = shortDays[futureDate.getDay()];
     var dateNum = futureDate.getDate();
     var monthNum = futureDate.getMonth() + 1;
     
@@ -346,26 +137,10 @@ function generateCalendar() {
     var displayDate = shortDayName + " d. " + dateNum + "/" + monthNum;
     var simpleFormat = dateNum + "/" + monthNum;
     
-    // Tjek om det er weekend (6 = lørdag, 0 = søndag)
-    var isWeekend = (dayOfWeekNum === 6 || dayOfWeekNum === 0);
-    var isFri = fridage.includes(simpleFormat);
-    
-    var shouldBeLocked = true;
-    
-    if (isWeekend) {
-      // Weekender er åbne, medmindre de er lukket manuelt
-      shouldBeLocked = manueltSpærret.includes(simpleFormat);
-    } else {
-      // Hverdage er låst, medmindre det er en fridag (og den ikke er spærret manuelt)
-      if (isFri) {
-        shouldBeLocked = manueltSpærret.includes(simpleFormat);
-      } else {
-        shouldBeLocked = true;
-      }
-    }
+    var isBooked = manueltSpærret.includes(simpleFormat);
     
     var dayDiv = document.createElement('div');
-    if (shouldBeLocked) {
+    if (isBooked) {
       dayDiv.className = "calendar-day booked";
       dayDiv.innerHTML = displayDate + '<p style="color:#dc3545;">OPTAGET</p>';
     } else {
@@ -373,17 +148,12 @@ function generateCalendar() {
       dayDiv.setAttribute('onclick', "selectDay(this, '" + fullDateStr + "')");
       dayDiv.innerHTML = displayDate + '<p style="color:#28a745;">LEDIG</p>';
     }
-    
     calendarGrid.appendChild(dayDiv);
   }
 }
 
 function selectDay(element, dateStr) {
-  var days = document.querySelectorAll('.calendar-day');
-  days.forEach(function(day) {
-    day.classList.remove('selected');
-  });
-  
+  document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
   element.classList.add('selected');
   chosenDate = dateStr;
 }
@@ -391,43 +161,12 @@ function selectDay(element, dateStr) {
 function sendBooking() {
   var name = document.getElementById('name').value;
   var car = document.getElementById('car').value;
-  
-  if (!chosenDate) {
-    alert("Vælg venligst en dag i kalenderen først!");
-    return;
-  }
-  if (!name || !car) {
-    alert("Udfyld venligst dit navn og din bil!");
-    return;
-  }
-
-  var services = ["Indvendig rengøring (400 kr.)"];
-  var totalPris = 400;
-
-  if (document.getElementById('service-hair').checked) {
-    services.push("Fjernelse af kæledyrshår (+100 kr.)");
-    totalPris += 100;
-  }
-  if (document.getElementById('service-stains').checked) {
-    services.push("Pletfjerning fra sæder (+200 kr.)");
-    totalPris += 200;
-  }
-
-  var message = "Hej Gustav! Jeg vil gerne bestille en bilrengøring:\n\n" +
-                "Navn: " + name + "\n" +
-                "Bil: " + car + "\n" +
-                "Ønsket dag: " + chosenDate + "\n\n" +
-                "Valgte services:\n- " + services.join("\n- ") + "\n\n" +
-                "Samlet pris: " + totalPris + " kr.";
-
-  var encodedMessage = encodeURIComponent(message);
-  var phoneNumber = "4542163376";
-
-  window.location.href = "sms:+" + phoneNumber + "?body=" + encodedMessage;
+  if (!chosenDate || !name || !car) { alert("Udfyld venligst alt!"); return; }
+  var message = "Hej Gustav! Jeg vil gerne bestille en bilrengøring. Navn: " + name + ", Bil: " + car + ", Dag: " + chosenDate;
+  window.location.href = "sms:+4542163376?body=" + encodeURIComponent(message);
 }
 
 window.onload = generateCalendar;
 </script>
-
 </body>
 </html>
