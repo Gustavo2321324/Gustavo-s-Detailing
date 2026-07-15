@@ -37,7 +37,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   width: 100%;
   height: auto;
   border-radius: 6px;
-  aspect-ratio: 3/4; /* Sørger for at billederne har samme højde */
+  aspect-ratio: 3/4; /* Holder billederne i samme højde og format */
   object-fit: cover;
 }
 .result-card p {
@@ -50,37 +50,26 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <nav><h2>Gustavos Detailing</h2></nav>
 
 <div class="hero">
-<!-- Dit hovedbillede i toppen -->
 <img src="image1.jpg"
      alt="Gustavos Detailing"
-     style="width:750px;max-width:200%;display:block;margin:auto;"
-     onerror="this.src='image1.png'; this.onerror=this.src='image1.JPG';">
+     style="width:750px;max-width:200%;display:block;margin:auto;">
 <p>Ren, frisk og som ny – i Odense.</p>
 <a class="btn" href="#kontakt">Kontakt</a>
 </div>
 
-<!-- Resultater sektion -->
+<!-- Her er dine resultater med de helt rigtige .png-navne -->
 <section>
 <h2>Vores Resultater</h2>
 <p>Se den store forskel før og efter en grundig indvendig rengøring af førersiden.</p>
 <div class="results-gallery">
-  
-  <!-- Billede 1 (Før) -->
   <div class="result-card">
-    <img src="IMG_4448.jpg" 
-         alt="Beskidt bilbund før rengøring" 
-         onerror="this.onerror=null; this.src='IMG_4448.JPG';">
+    <img src="IMG_4448.png" alt="Beskidt bilbund før rengøring">
     <p>Før: Beskidt og støvet bund</p>
   </div>
-  
-  <!-- Billede 2 (Efter) -->
   <div class="result-card">
-    <img src="IMG_4449.jpg" 
-         alt="Ren bilbund efter grundig detailing" 
-         onerror="this.onerror=null; this.src='IMG_4449.JPG';">
+    <img src="IMG_4449.png" alt="Ren bilbund efter grundig detailing">
     <p>Efter: Helt ren og som ny</p>
   </div>
-
 </div>
 </section>
 
