@@ -54,15 +54,19 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
   font-weight: bold;
 }
 
-/* Lodret video-styling */
-.video-container {
+/* Lodret video-styling - nu med sin egen sektion */
+.video-section {
   display: flex;
-  justify-content: center;
-  margin-top: 25px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px; /* Mere luft */
+  margin-bottom: 50px;
+  background: #fdfdfd; /* Lidt lysere baggrund */
+  padding: 50px 20px;
 }
 .vertical-video {
   width: 100%;
-  max-width: 320px; /* Perfekt bredde til en lodret mobilvideo */
+  max-width: 380px; /* Lidt bredere video */
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
   outline: none;
@@ -109,7 +113,7 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <a class="btn" href="#kontakt">Kontakt</a>
 </div>
 
-<!-- Her er dine resultater med de helt rigtige .png-navne -->
+<!-- Sektion 1: Før/Efter-billeder -->
 <section>
 <h2>Vores Resultater</h2>
 <p>Se den store forskel før og efter en grundig indvendig rengøring af førersiden.</p>
@@ -123,15 +127,17 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
     <p>Efter: Helt ren og som ny</p>
   </div>
 </div>
+</section>
 
-<!-- Her er den nye lodrette video, der kører automatisk -->
-<div class="video-container">
+<!-- Ny Sektion 2: Videoen helt for sig selv -->
+<section class="video-section">
+  <h2>Rengøring i proces</h2>
+  <p>Se en hurtig video af, hvordan jeg fjerner snavs med min støvsuger.</p>
   <video class="vertical-video" autoplay loop muted playsinline>
     <source src="IMG_4452.mov" type="video/mp4">
     <source src="IMG_4452.mov" type="video/quicktime">
     Din browser understøtter ikke video-tagget.
   </video>
-</div>
 </section>
 
 <section>
