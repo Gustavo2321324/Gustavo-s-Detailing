@@ -10,21 +10,70 @@ nav{background:#ffffff;padding:18px 30px;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 nav h2{color:#000;margin:0}
 .hero{padding:100px 20px;text-align:center;background:#ffffff}
 h1,h2{color:#000}
-.btn{display:inline-block;background:#0d6efd;color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none}
+.btn{display:inline-block;background:#0d6efd;color:#fff;padding:12px 24px;border-radius:30px;text-decoration:none;font-weight:bold}
 section{padding:50px 20px;max-width:900px;margin:auto}
 .card{border:1px solid #ddd;border-radius:10px;padding:20px;margin:15px 0}
 footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
+
+/* Styling til resultat-billederne */
+.results-gallery {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+.result-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background: #fdfdfd;
+  max-width: 45%;
+  min-width: 280px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.result-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  aspect-ratio: 3/4; /* Holder billederne i samme højde og format */
+  object-fit: cover;
+}
+.result-card p {
+  margin-top: 10px;
+  font-weight: bold;
+}
 </style>
 </head>
 <body>
 <nav><h2>Gustavos Detailing</h2></nav>
+
 <div class="hero">
+<!-- Du kan beholde eller udskifte image1.jpg som dit logo/hovedbillede her -->
 <img src="image1.jpg"
      alt="Gustavos Detailing"
      style="width:750px;max-width:200%;display:block;margin:auto;">
 <p>Ren, frisk og som ny – i Odense.</p>
 <a class="btn" href="#kontakt">Kontakt</a>
 </div>
+
+<!-- Her er din nye resultater-sektion -->
+<section>
+<h2>Vores Resultater</h2>
+<p>Her kan du se kvaliteten af vores indvendige klargøring. Vi går helt ned i detaljen.</p>
+<div class="results-gallery">
+  <div class="result-card">
+    <img src="IMG_4049.jpg" alt="Professionel rengøring af måtter og bund">
+    <p>Bund & måtter før/efter detaljer</p>
+  </div>
+  <div class="result-card">
+    <img src="IMG_3251.jpg" alt="Dybdegående støvsugning og rens af sæder">
+    <p>Perfekte striber på tæpperne bagtil</p>
+  </div>
+</div>
+</section>
+
 <section>
 <h2>Priser</h2>
 <div class="card">
@@ -36,16 +85,19 @@ footer{background:#0d6efd;color:#fff;text-align:center;padding:20px}
 <p>Kommer snart.</p>
 </div>
 </section>
+
 <section>
 <h2>Om mig</h2>
 <p>Hej! Mit navn er Gustav, jeg er 14 år gammel og har rengjort biler indvendigt i ca. et år. Jeg går op i kvalitet og giver din bil et nyt liv. Rengøring kan foregå hos dig eller hos mig i 5230 Odense M.</p>
 </section>
+
 <section id="kontakt">
 <h2>Kontakt</h2>
 <p>📍 5230 Odense M</p>
 <p>📞 Telefon: 42 16 33 76</p>
-<a class="btn" href="tel:+45DITNUMMER">Ring nu</a>
+<a class="btn" href="tel:+4542163376">Ring nu</a>
 </section>
+
 <footer>© 2026 Gustavos Detailing</footer>
 </body>
 </html>
